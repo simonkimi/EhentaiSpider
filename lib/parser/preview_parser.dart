@@ -24,10 +24,9 @@ class PreviewParser {
       var stars = parseStar(element);
       var tag = element.querySelector('.gl1c')?.text ?? '';
       var uploadTime = element.querySelector('.glnew')?.text ?? '';
-
       var targetUrl = element.querySelector('.gl3c a')?.attributes['href'] ?? '';
-
       var previewImg = element.querySelector('.glthumb img')?.attributes['src'] ?? '';
+      var language = parseLanguage(element);
 
       return PreViewModel(
         pages: pages,
@@ -37,7 +36,8 @@ class PreviewParser {
         targetUrl: targetUrl,
         title: title,
         uploader: uploader,
-        uploadTime: uploadTime
+        uploadTime: uploadTime,
+        language: language
       );
 
     }).toList();
@@ -68,4 +68,13 @@ class PreviewParser {
     }
     return 0;
   }
+  
+  String parseLanguage(Element e) {
+    var tagElement = e.querySelector('.gt');
+    if (tagElement?.attributes['title']?.contains('language') ?? false) {
+      return tagElement.attributes['title'].substring('language:'.length);
+    }
+    return '';
+  }
+
 }

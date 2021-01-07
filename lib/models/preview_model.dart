@@ -5,6 +5,7 @@ class PreViewModel {
   final String uploadTime;
   final int pages;
   final int stars;
+  final String language;
 
   final String targetUrl;
   final String previewImg;
@@ -17,5 +18,6 @@ class PreViewModel {
       this.pages,
       this.stars,
       this.targetUrl,
-      this.previewImg});
+      this.previewImg,
+      this.language});
 }

@@ -20,6 +20,5 @@ void main(List<String> arguments) async {
   };
 
   var previewList = PreviewParser(preview_html.html).parse();
-  previewList.forEach((element) { print(element.title);});
 
 }
