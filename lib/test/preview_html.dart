@@ -1,4 +1,4 @@
-var html = """
+var html = r"""
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head>
 <title>E-Hentai Galleries - The Free Hentai Doujinshi, Manga and Image Gallery System</title>
 <link rel="stylesheet" type="text/css" href="https://e-hentai.org/z/0348/g.css">

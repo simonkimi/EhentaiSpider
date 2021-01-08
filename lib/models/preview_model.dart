@@ -9,6 +9,7 @@ class PreViewModel {
 
   final String targetUrl;
   final String previewImg;
+  final List<String> keyTags;
 
   PreViewModel(
       {this.title,
@@ -19,5 +20,6 @@ class PreViewModel {
       this.stars,
       this.targetUrl,
       this.previewImg,
-      this.language});
+      this.language,
+      this.keyTags});
 }

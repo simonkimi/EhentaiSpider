@@ -27,6 +27,8 @@ class PreviewParser {
       var targetUrl = element.querySelector('.gl3c a')?.attributes['href'] ?? '';
       var previewImg = element.querySelector('.glthumb img')?.attributes['src'] ?? '';
       var language = parseLanguage(element);
+      var keyTags = element.querySelectorAll('.gt').map((e) => e.text).toList();
+
 
       return PreViewModel(
         pages: pages,
@@ -37,7 +39,8 @@ class PreviewParser {
         title: title,
         uploader: uploader,
         uploadTime: uploadTime,
-        language: language
+        language: language,
+        keyTags: keyTags
       );
 
     }).toList();
