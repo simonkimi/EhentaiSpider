@@ -1,8 +1,9 @@
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
+import 'package:eh/parser/gallery_parser.dart';
 import 'package:eh/parser/preview_parser.dart';
 import 'package:eh/url.dart';
-import 'package:eh/test/preview_html.dart' as preview_html;
+import 'package:eh/test/gallery_html.dart' as html;
 
 void main(List<String> arguments) async {
   var dio = Dio()
@@ -19,6 +20,6 @@ void main(List<String> arguments) async {
     client.findProxy = (url) => 'PROXY 127.0.0.1:4780';
   };
 
-  var previewList = PreviewParser(preview_html.html).parse();
+  var previewList = GalleryParser(html.html).parse();
 
 }
