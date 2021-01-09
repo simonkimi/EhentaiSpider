@@ -18,8 +18,7 @@ class GalleryParser {
         .text;
     var previewImages = parsePreview(document);
     var maxPageIndex = parseMaxPage(document);
-
-    print(previewImages);
+    var comments = parseComment(document);
 
     return GalleryModel(
       tags: tags,
@@ -27,6 +26,7 @@ class GalleryParser {
       fileSize: fileSize,
       previewImages: previewImages,
       maxPageIndex: maxPageIndex,
+      comments: comments
     );
   }
 
@@ -64,5 +64,24 @@ class GalleryParser {
     var bottomBarElements = element.querySelectorAll('.ptb > tbody > tr > td');
     var ele = bottomBarElements[bottomBarElements.length - 2];
     return int.parse(ele.text);
+  }
+
+  List<CommentModel> parseComment(Element element) {
+    var comments = element.querySelectorAll('.c1');
+
+    return comments.map((e){
+      var uploader = e.querySelector('.c3 > a').text ?? '';
+      var re = RegExp(r'on\s([\w\s,:]+)\sby');
+      var uploadTimeText = e.querySelector('.c3').text;
+      var match = re.firstMatch(uploadTimeText);
+      var comment = e.querySelector('.c6')?.innerHtml?.replaceAll('<br>', '\n') ?? '';
+      var commentDocument = parser.parse(comment);
+      comment = commentDocument.body.text;
+      return CommentModel(
+        commentTime: match[1],
+        username: uploader,
+        comment: comment
+      );
+    }).toList();
   }
 }

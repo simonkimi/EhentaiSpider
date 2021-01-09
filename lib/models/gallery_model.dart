@@ -6,6 +6,7 @@ class GalleryModel {
   final List<TagModels> tags;
   List<PreviewImage> previewImages;
   final int maxPageIndex;
+  final List<CommentModel> comments;
 
   GalleryModel({
     this.maxPageIndex,
@@ -15,6 +16,7 @@ class GalleryModel {
     this.favorited,
     this.tags,
     this.previewImages,
+    this.comments
   });
 }
 
@@ -41,5 +43,22 @@ class PreviewImage {
   @override
   String toString() {
     return '${image} ${height} ${positioning} ${target}';
+  }
+}
+
+class CommentModel {
+  final String username;
+  final String comment;
+  final String commentTime;
+
+  CommentModel({
+    this.username,
+    this.comment,
+    this.commentTime,
+  });
+
+  @override
+  String toString() {
+    return '$username $commentTime $comment';
   }
 }

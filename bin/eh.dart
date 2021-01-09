@@ -1,25 +1,6 @@
-import 'package:dio/adapter.dart';
-import 'package:dio/dio.dart';
-import 'package:eh/parser/gallery_img_parser.dart';
-import 'package:eh/url.dart';
-import 'package:eh/test/gallery_img_html.dart' as html;
+import 'package:eh/parser/gallery_parser.dart';
+import 'package:eh/test/gallery_html.dart' as html;
 
 void main(List<String> arguments) async {
-  var dio = Dio()
-  ..options.baseUrl=EhUrl.HOST_E
-  ..options.connectTimeout=10*1000
-  ..options.headers={
-    'Accept-Encoding': 'gzip, deflate, br',
-    'Accept-Language': 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:84.0) Gecko/20100101 Firefox/84.0'
-  };
-
-  (dio.httpClientAdapter as DefaultHttpClientAdapter)
-      .onHttpClientCreate = (client) {
-    client.findProxy = (url) => 'PROXY 127.0.0.1:4780';
-  };
-
-  var previewList = GalleryImgParser(html.html).parse();
-  print(previewList);
-
+  GalleryParser(html.html).parse();
 }
