@@ -26,11 +26,15 @@ class PreviewParser {
       var previewImg =
           element.querySelector('.glthumb img')?.attributes['src'] ?? '';
       var language = parseLanguage(element);
-      var keyTags = element.querySelectorAll('.gt').map((e) => e.text).toList();
+
       var imgSize = parseImg(element);
       var targetUrl =
           element.querySelector('.gl3c a')?.attributes['href'] ?? '';
       var gidAndgtoken = parseToken(targetUrl);
+
+      var keyTags = parseTag(element);
+
+      print(keyTags);
 
       return PreViewModel(
           gid: gidAndgtoken[0],
@@ -84,11 +88,31 @@ class PreviewParser {
     return 0;
   }
 
+  List<PreviewTag> parseTag(Element element) {
+    var tagElements = element.querySelectorAll('.gt');
+    return tagElements.map((e) {
+      var tag = e.text;
+      var color = 0;
+      if (e.attributes.containsKey('style')) {
+        var style = e.attributes['style'];
+        var reg = RegExp(r',#(\w{6})\)');
+        var match = reg.firstMatch(style);
+        color = int.parse(match[1], radix: 16);
+      }
+      return PreviewTag(
+          tag: tag,
+          color: color
+      );
+    }).toList();
+  }
+
   /// 解析语言
-  String parseLanguage(Element e) {
-    var tagElement = e.querySelector('.gt');
-    if (tagElement?.attributes['title']?.contains('language') ?? false) {
-      return tagElement.attributes['title'].substring('language:'.length);
+  String parseLanguage(Element element) {
+    var tagElement = element.querySelectorAll('.gt');
+    for (var e in tagElement) {
+      if (e.attributes['title']?.contains('language') ?? false) {
+        return e.attributes['title']?.substring('language:'.length);
+      }
     }
     return '';
   }

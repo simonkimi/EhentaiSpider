@@ -1,6 +1,8 @@
+import 'package:eh/network/sni.dart';
 import 'package:eh/parser/gallery_parser.dart';
-import 'package:eh/test/gallery_html.dart' as html;
+import 'package:eh/parser/preview_parser.dart';
+import 'package:eh/test/preview_html.dart' as html;
 
 void main(List<String> arguments) async {
-  GalleryParser(html.html).parse();
+  PreviewParser(html.html).parse();
 }
