@@ -1,4 +1,22 @@
 class PreViewModel {
+  PreViewModel({
+    required this.gid,
+    required this.gtoken,
+    required this.title,
+    required this.tag,
+    required this.uploader,
+    required this.uploadTime,
+    required this.pages,
+    required this.stars,
+    required this.targetUrl,
+    required this.previewImg,
+    required this.language,
+    required this.keyTags,
+    required this.previewHeight,
+    required this.previewWidth,
+    this.titleJpn,
+  });
+
   final String title;
   final String tag;
   final String uploader;
@@ -17,39 +35,22 @@ class PreViewModel {
   final String gid;
   final String gtoken;
 
-  String titleJpn;
-
-  PreViewModel({
-    this.gid,
-    this.gtoken,
-    this.title,
-    this.tag,
-    this.uploader,
-    this.uploadTime,
-    this.pages,
-    this.stars,
-    this.targetUrl,
-    this.previewImg,
-    this.language,
-    this.keyTags,
-    this.previewHeight,
-    this.previewWidth,
-  });
+  String? titleJpn;
 
   @override
   String toString() {
-    return 'PreViewModel title: $title upload: $uploadTime';
+    return '{PreViewModel gid: $gid gtoken: $gtoken title: $title upload: $uploadTime tag: $tag, uploader: $uploader, page: $pages, preview: $previewImg stars: $stars, keyTags: $keyTags}';
   }
 }
 
 class PreviewTag {
+  PreviewTag({required this.tag, required this.color});
+
   final String tag;
   final int color;
 
-  PreviewTag({this.tag, this.color});
-
   @override
   String toString() {
-    return '$tag $color';
+    return '{$tag $color}';
   }
 }
